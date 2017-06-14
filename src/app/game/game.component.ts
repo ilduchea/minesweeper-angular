@@ -82,7 +82,12 @@ export class GameComponent implements OnInit {
           if (x+1 < dimensions && y+1 < dimensions && this.mines[x+1][y+1].isBomb) {
             numberOfBombs++;
           }
-          this.mines[x][y].display = numberOfBombs;
+
+          if (numberOfBombs == 0) {
+            this.mines[x][y].display = '-';
+          } else {
+            this.mines[x][y].display = numberOfBombs;
+          }
         }
       }
     }
