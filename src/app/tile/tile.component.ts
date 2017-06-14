@@ -7,7 +7,7 @@ import { Mine } from '../mine.model';
   styleUrls: ['./tile.component.css']
 })
 export class TileComponent implements OnInit {
-  @Input() mine: Mine;
+  @Input() mines: Mine[];
 
   constructor() { }
 

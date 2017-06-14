@@ -3,16 +3,16 @@ import { Mine } from './mine.model';
 
 @Injectable()
 export class GameService {
-  mines: Mine[] = [];
+  mines: any[] = [];
 
   constructor() { }
 
   createBoard(dimensions) {
-    for (let y = 1; y <= dimensions; y++) {
-      for (let x = 1; x <= dimensions; x++) {
-        let newMine: Mine = new Mine(false, y, x);
-        this.mines.push(newMine);
-        console.log(newMine);
+    for (let x = 0; x < dimensions; x++) {
+      this.mines[x] = [];
+      for (let y = 0; y < dimensions; y++) {
+        let newMine: Mine = new Mine(false, '0');
+        this.mines[x][y] = newMine;
       }
     }
   }

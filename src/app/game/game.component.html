@@ -1,6 +1,7 @@
-<div class="board">
-  <button class="btn" (click)="createBoard()">Start</button>
-  <div class="mine" *ngFor="let mine of mines">
-    <app-tile [mine]="mine"></app-tile>
+<button class="btn" (click)="placeMines(10, 10)">Start</button>
+<button class="btn" (click)="findBombs(10)">Find</button>
+<div class="board container">
+  <div *ngFor="let mines of mines">
+    <app-tile [mines]="mines"></app-tile>
   </div>
 </div>

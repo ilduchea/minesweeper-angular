@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+.mine {
+  border: 1px solid #000;
+  width: 25px;
+  height: 25px;
+  display: inline-grid;
+  text-align: center;
+  line-height: 25px;
+}
+
+.board {
+  margin-top: 10px;
+}
