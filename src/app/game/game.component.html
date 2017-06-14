@@ -1,0 +1,6 @@
+<div class="board">
+  <button class="btn" (click)="createBoard()">Start</button>
+  <div class="mine" *ngFor="let mine of mines">
+    <app-tile [mine]="mine"></app-tile>
+  </div>
+</div>
