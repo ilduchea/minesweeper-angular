@@ -23,6 +23,8 @@ export class GameComponent implements OnInit {
   createBoard() {
     this.gameService.createBoard(10);
     this.mines = this.gameService.mines;
+    this.placeMines(10, 10);
+    this.findBombs(10);
   }
 
   placeMines(numberOfMines: number, dimension: number) {
