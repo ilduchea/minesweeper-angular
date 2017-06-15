@@ -16,16 +16,26 @@ export class TileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
 
   checkTile(mine: Mine) {
-    if (mine.isBomb && !mine.isClicked) {
-      mine.isClicked = true;
-      alert('Game Over');
-      this.sendGameOver.emit();
+    if (!mine.isFlagged) {
+      if (mine.isBomb && !mine.isClicked) {
+        mine.isClicked = true;
+        alert('Game Over');
+        this.sendGameOver.emit();
+      } else {
+        this.sendCheckTile.emit(mine);
+      }
+    }
+  }
 
+  toggleFlag(mine: Mine) {
+    if (mine.isFlagged) {
+        mine.isFlagged = false;
     } else {
-      this.sendCheckTile.emit(mine);
+      mine.isFlagged = true;
     }
   }
 

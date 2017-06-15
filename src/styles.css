@@ -25,12 +25,22 @@ body {
   height: 25px;
 }
 
-.covered:hover {
-  background: #ddd;
+.flagged {
+  background: #111;
 }
+
+/*.covered:hover {
+  background: #ddd;
+}*/
 
 .board {
   margin-top: 10px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .blank {

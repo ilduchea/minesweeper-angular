@@ -19,6 +19,9 @@ export class GameComponent implements OnInit {
     mines: 10,
   };
 
+  revealedTiles: number = 0;
+  safeTiles: number = (this.gameDifficulty.height * this.gameDifficulty.width) - this.gameDifficulty.mines;
+
   constructor(
     private gameService: GameService
   ) { }
@@ -55,13 +58,12 @@ export class GameComponent implements OnInit {
   createBoard() {
     this.gameService.createBoard(this.gameDifficulty);
     this.minesMaster = this.gameService.mines;
-    this.placeMines(this.gameDifficulty);
-    this.findBombs(this.gameDifficulty);
   }
 
   newGame() {
     this.gameService.mines = [];
     this.gameStarted = false;
+    this.revealedTiles = 0;
     this.createBoard();
   }
 
@@ -149,18 +151,18 @@ export class GameComponent implements OnInit {
     }
   }
 
-  revealTile(x: number, y: number) {
-    if (this.minesMaster[x][y].display < 9) {
-      this.minesMaster[x][y].isClicked = true;
-    }
-  }
-
   checkTiles(mine: Mine) {
     let x: number = mine.x;
     let y: number = mine.y;
 
+    if (!this.gameStarted) {
+      this.placeMines(this.gameDifficulty);
+      this.findBombs(this.gameDifficulty);
+    }
+
     if (mine.display < 9) {
       mine.isClicked = true;
+      this.revealedTiles++;
       if (mine.display == 0) {
         if (x-1 >= 0 && y-1 >= 0 && !this.minesMaster[x-1][y-1].isClicked) {
           this.checkTiles(this.minesMaster[x-1][y-1]);
@@ -168,24 +170,28 @@ export class GameComponent implements OnInit {
         if (y-1 >= 0 && !this.minesMaster[x][y-1].isClicked) {
           this.checkTiles(this.minesMaster[x][y-1]);
         }
-        if (y-1 >= 0 && x+1 < this.minesMaster.length && !this.minesMaster[x+1][y-1].isClicked) {
+        if (y-1 >= 0 && x+1 < this.gameDifficulty.height && !this.minesMaster[x+1][y-1].isClicked) {
           this.checkTiles(this.minesMaster[x+1][y-1]);
         }
         if (x-1 >= 0 && !this.minesMaster[x-1][y].isClicked) {
           this.checkTiles(this.minesMaster[x-1][y]);
         }
-        if (x+1 < this.minesMaster.length && !this.minesMaster[x+1][y].isClicked) {
+        if (x+1 < this.gameDifficulty.height && !this.minesMaster[x+1][y].isClicked) {
           this.checkTiles(this.minesMaster[x+1][y]);
         }
-        if (x-1 >= 0 && y+1 < this.minesMaster.length && !this.minesMaster[x-1][y+1].isClicked) {
+        if (x-1 >= 0 && y+1 < this.gameDifficulty.width && !this.minesMaster[x-1][y+1].isClicked) {
           this.checkTiles(this.minesMaster[x-1][y+1]);
         }
-        if (y+1 < this.minesMaster.length && !this.minesMaster[x][y+1].isClicked) {
+        if (y+1 < this.gameDifficulty.width && !this.minesMaster[x][y+1].isClicked) {
           this.checkTiles(this.minesMaster[x][y+1]);
         }
-        if (x+1 < this.minesMaster.length && y+1 < this.minesMaster.length && !this.minesMaster[x+1][y+1].isClicked) {
+        if (x+1 < this.gameDifficulty.height && y+1 < this.gameDifficulty.width && !this.minesMaster[x+1][y+1].isClicked) {
           this.checkTiles(this.minesMaster[x+1][y+1]);
         }
+      }
+      if (this.revealedTiles == this.safeTiles) {
+        this.gameOver();
+        alert('You Won!!!');
       }
     }
   }
