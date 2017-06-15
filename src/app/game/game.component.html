@@ -1,7 +1,6 @@
-<button class="btn" (click)="placeMines(10, 10)">Start</button>
-<button class="btn" (click)="findBombs(10)">Find</button>
+<button class="btn" (click)="newGame()">New Game</button>
 <div class="board container">
   <div *ngFor="let mines of minesMaster">
-    <app-tile [mines]="mines"></app-tile>
+    <app-tile [mines]="mines" (sendCheckTile)="checkTiles($event)" (sendGameOver)="gameOver()"></app-tile>
   </div>
 </div>

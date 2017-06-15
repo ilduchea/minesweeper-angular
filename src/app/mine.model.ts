@@ -4,5 +4,5 @@ export class Mine {
   isClicked: boolean = false;
   clickedClass: string = 'blank';
 
-  constructor() { }
+  constructor(public x: number, public y: number) { }
 }
