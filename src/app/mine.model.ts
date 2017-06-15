@@ -1,6 +1,8 @@
 export class Mine {
-  constructor(
-    public isBomb: boolean,
-    public display: string
-  ) { }
+  isBomb: boolean = false;
+  display: number = 9;
+  isClicked: boolean = false;
+  clickedClass: string = 'blank';
+
+  constructor() { }
 }

@@ -1,14 +1,85 @@
 /* You can add global styles to this file, and also import other style files */
-.mine {
-  background: #eee;
-  border: 1px solid #000;
+body {
+  background: #ddd;
+}
+
+.mineTile {
+  background: #b3b3b3;
   width: 25px;
   height: 25px;
   display: inline-grid;
   text-align: center;
   line-height: 25px;
+  font-size: 18px;
+}
+
+.mineTile:hover {
+  cursor: pointer;
+}
+
+.covered {
+  background: #eee;
+  color: rgba(0,0,0,0);
+  border-style: outset;
+  width: 25px;
+  height: 25px;
+}
+
+.covered:hover {
+  background: #ddd;
 }
 
 .board {
   margin-top: 10px;
+}
+
+.blank {
+  color: rgba(0,0,0,0);
+  border-style: inset;
+}
+
+.bomb {
+  color: rgba(0,0,0,0);
+  background: url('./assets/img/bomb.jpg') no-repeat;
+  background-size: contain;
+}
+
+.one {
+  color: #0000ff;
+  border-style: inset;
+}
+
+.two {
+  color: #008000;
+  border-style: inset;
+}
+
+.three {
+  color: #ff0000;
+  border-style: inset;
+}
+
+.four {
+  color: #000080;
+  border-style: inset;
+}
+
+.five {
+  color: #7f0000;
+  border-style: inset;
+}
+
+.six {
+  color: #007f7f;
+  border-style: inset;
+}
+
+.seven {
+  color: #020202;
+  border-style: inset;
+}
+
+.eight {
+  color: #7f7f7f;
+  border-style: inset;
 }

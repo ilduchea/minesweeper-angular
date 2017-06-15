@@ -11,8 +11,7 @@ export class GameService {
     for (let x = 0; x < dimensions; x++) {
       this.mines[x] = [];
       for (let y = 0; y < dimensions; y++) {
-        let newMine: Mine = new Mine(false, '-');
-        this.mines[x][y] = newMine;
+        this.mines[x][y] = new Mine();
       }
     }
   }

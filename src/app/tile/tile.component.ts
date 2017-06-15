@@ -8,10 +8,16 @@ import { Mine } from '../mine.model';
 })
 export class TileComponent implements OnInit {
   @Input() mines: Mine[];
+  mine: Mine;
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  checkTile(mine: Mine) {
+    this.mine = mine;
+    this.mine.isClicked = true;
   }
 
 }
