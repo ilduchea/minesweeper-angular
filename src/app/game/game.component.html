@@ -1,4 +1,9 @@
-<button class="btn" (click)="newGame()">New Game</button>
+<select #difficulty>
+  <option value="easy">Easy</option>
+  <option value="intermediate">Intermediate</option>
+  <option value="extreme">Extreme</option>
+</select>
+<button class="btn" (click)="setDifficulty(difficulty.value)">New Game</button>
 <div class="board container">
   <div *ngFor="let mines of minesMaster">
     <app-tile [mines]="mines" (sendCheckTile)="checkTiles($event)" (sendGameOver)="gameOver()"></app-tile>

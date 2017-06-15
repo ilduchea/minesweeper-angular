@@ -7,10 +7,10 @@ export class GameService {
 
   constructor() { }
 
-  createBoard(dimensions) {
-    for (let x = 0; x < dimensions; x++) {
+  createBoard(gameDifficulty) {
+    for (let x = 0; x < gameDifficulty.height; x++) {
       this.mines[x] = [];
-      for (let y = 0; y < dimensions; y++) {
+      for (let y = 0; y < gameDifficulty.width; y++) {
         this.mines[x][y] = new Mine(x, y);
       }
     }

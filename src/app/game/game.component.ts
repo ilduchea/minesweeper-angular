@@ -8,9 +8,16 @@ import { Mine } from '../mine.model';
   styleUrls: ['./game.component.css'],
   providers: [GameService]
 })
+
 export class GameComponent implements OnInit {
   minesMaster;
   gameStarted: boolean = false;
+
+  gameDifficulty: any = {
+    height: 10,
+    width: 10,
+    mines: 10,
+  };
 
   constructor(
     private gameService: GameService
@@ -20,11 +27,36 @@ export class GameComponent implements OnInit {
     this.createBoard();
   }
 
+  setDifficulty(difficulty: string) {
+    if (difficulty == 'easy') {
+      this.gameDifficulty = {
+        height: 10,
+        width: 10,
+        mines: 10,
+      }
+    }
+    if (difficulty == 'intermediate') {
+      this.gameDifficulty = {
+        height: 16,
+        width: 16,
+        mines: 40,
+      }
+    }
+    if (difficulty == 'extreme') {
+      this.gameDifficulty = {
+        height: 16,
+        width: 32,
+        mines: 99,
+      }
+    }
+    this.newGame();
+  }
+
   createBoard() {
-    this.gameService.createBoard(10);
+    this.gameService.createBoard(this.gameDifficulty);
     this.minesMaster = this.gameService.mines;
-    this.placeMines(10, 10);
-    this.findBombs(10);
+    this.placeMines(this.gameDifficulty);
+    this.findBombs(this.gameDifficulty);
   }
 
   newGame() {
@@ -36,18 +68,21 @@ export class GameComponent implements OnInit {
   gameOver() {
     this.minesMaster.forEach(mines => {
       mines.forEach(mine => {
-        mine.isClicked = true;  
+        mine.isClicked = true;
       });
     });
   }
 
-  placeMines(numberOfMines: number, dimension: number) {
+  placeMines(gameDifficulty) {
+    let height: number = gameDifficulty.height;
+    let width: number = gameDifficulty.width;
+    let mines: number = gameDifficulty.mines;
     let minesPlanted: number = 0;
 
     if (!this.gameStarted) {
-      while (minesPlanted < numberOfMines) {
-        let x = this.getRandomNumber(dimension);
-        let y = this.getRandomNumber(dimension);
+      while (minesPlanted < mines) {
+        let x = this.getRandomNumber(height);
+        let y = this.getRandomNumber(width);
 
         if (!this.minesMaster[x][y].isBomb)
         {
@@ -68,9 +103,9 @@ export class GameComponent implements OnInit {
     return Math.floor((Math.random() * dimension));
   }
 
-  findBombs(dimensions: number) {
-    for (let x = 0; x < dimensions; x++) {
-      for (let y = 0; y < dimensions; y++) {
+  findBombs(gameDifficulty) {
+    for (let x = 0; x < gameDifficulty.height; x++) {
+      for (let y = 0; y < gameDifficulty.width; y++) {
         let numberOfBombs: number = 0;
 
         if (!this.minesMaster[x][y].isBomb) {
@@ -80,22 +115,22 @@ export class GameComponent implements OnInit {
           if (y-1 >= 0 && this.minesMaster[x][y-1].isBomb) {
             numberOfBombs++;
           }
-          if (y-1 >= 0 && x+1 < dimensions && this.minesMaster[x+1][y-1].isBomb) {
+          if (y-1 >= 0 && x+1 < gameDifficulty.height && this.minesMaster[x+1][y-1].isBomb) {
             numberOfBombs++;
           }
           if (x-1 >= 0 && this.minesMaster[x-1][y].isBomb) {
             numberOfBombs++;
           }
-          if (x+1 < dimensions && this.minesMaster[x+1][y].isBomb) {
+          if (x+1 < gameDifficulty.height && this.minesMaster[x+1][y].isBomb) {
             numberOfBombs++;
           }
-          if (x-1 >= 0 && y+1 < dimensions && this.minesMaster[x-1][y+1].isBomb) {
+          if (x-1 >= 0 && y+1 < gameDifficulty.width && this.minesMaster[x-1][y+1].isBomb) {
             numberOfBombs++;
           }
-          if (y+1 < dimensions && this.minesMaster[x][y+1].isBomb) {
+          if (y+1 < gameDifficulty.width && this.minesMaster[x][y+1].isBomb) {
             numberOfBombs++;
           }
-          if (x+1 < dimensions && y+1 < dimensions && this.minesMaster[x+1][y+1].isBomb) {
+          if (x+1 < gameDifficulty.height && y+1 < gameDifficulty.width && this.minesMaster[x+1][y+1].isBomb) {
             numberOfBombs++;
           }
 
