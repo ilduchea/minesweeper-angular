@@ -1,28 +1,40 @@
 # Minesweeper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.1.0.
+## Description
 
-## Development server
+#### _**This is a clone of the classic Minesweeper game, using Angular.**_
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+#### _**By Tyler Stephenson, June 16, 2017**_
 
-## Code scaffolding
+### Setup/Installation Requirements
+* clone <link to repo>
+* cd <local repo>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+* run this series of commands:
+  * `$ npm install`
+  * `$ ng serve`
 
-## Build
+### Known Bugs
+No known bugs at this time.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Support and Contact details
+* Tyler Stephenson
+* ilduchea@gmail.com
 
-## Running unit tests
+### Technologies Used
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* Typescript
+* AngularJS
+* Angular CLI
+* Firebase
+* HTML5
+* CSS
+* Bootstrap
+* jQuery
+* node.js
 
-## Running end-to-end tests
+### License
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+*This is web page is licensed under the MIT License.*
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Copyright (c) 2017 **Tyler Stephenson**
